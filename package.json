@@ -20,16 +20,16 @@
     "css-compile-docs": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 assets/scss/docs.scss assets/css/docs.min.css",
     "css-prefix": "postcss --config build/postcss.config.js --replace dist/css/*.css",
     "css-prefix-docs": "postcss --config build/postcss.config.js --no-map --replace assets/css/docs.min.css",
-    "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output dist/css/bootstrap.min.css dist/css/bootstrap.css && cleancss --level 1 --source-map --source-map-inline-sources --output dist/css/bootstrap-grid.min.css dist/css/bootstrap-grid.css && cleancss --level 1 --source-map --source-map-inline-sources --output dist/css/bootstrap-reboot.min.css dist/css/bootstrap-reboot.css",
+    "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output web/css/bootstrap.min.css web/css/bootstrap.css && cleancss --level 1 --source-map --source-map-inline-sources --output web/css/bootstrap-grid.min.css web/css/bootstrap-grid.css && cleancss --level 1 --source-map --source-map-inline-sources --output web/css/bootstrap-reboot.min.css web/css/bootstrap-reboot.css",
     "css-minify-docs": "cleancss --level 1 --source-map --source-map-inline-sources --output assets/css/docs.min.css assets/css/docs.min.css",
     "js": "npm-run-all js-lint js-compile js-minify",
     "js-docs": "npm-run-all js-lint-docs js-minify-docs",
-    "js-lint": "eslint js/ && eslint --config js/tests/.eslintrc.json --env node build/ Gruntfile.js",
-    "js-lint-docs": "eslint --config js/tests/.eslintrc.json assets/js/",
+    "js-lint": "eslint js/ && eslint --config node_modules/bootstrap/js/.eslintrc.json --env node build/ Gruntfile.js",
+    "js-lint-docs": "eslint --config node_modules/bootstrap/js/.eslintrc.json assets/js/",
     "js-compile": "npm-run-all --parallel js-compile-*",
-    "js-compile-bundle": "shx cat js/src/util.js js/src/alert.js js/src/button.js js/src/carousel.js js/src/collapse.js js/src/dropdown.js js/src/modal.js js/src/scrollspy.js js/src/tab.js js/src/tooltip.js js/src/popover.js | shx sed \"s/^(import|export).*//\" | babel --filename js/src/bootstrap.js | node build/stamp.js > dist/js/bootstrap.js",
-    "js-compile-plugins": "babel js/src/ --out-dir js/dist/ --source-maps",
-    "js-minify": "uglifyjs --config-file build/uglifyjs.config.json --output dist/js/bootstrap.min.js dist/js/bootstrap.js",
+    "js-compile-bundle": "shx cat node_modules/bootstrap/js/src/util.js node_modules/bootstrap/js/src/alert.js node_modules/bootstrap/js/src/button.js node_modules/bootstrap/js/src/carousel.js node_modules/bootstrap/js/src/collapse.js node_modules/bootstrap/js/src/dropdown.js node_modules/bootstrap/js/src/modal.js node_modules/bootstrap/js/src/scrollspy.js node_modules/bootstrap/js/src/tab.js node_modules/bootstrap/js/src/tooltip.js node_modules/bootstrap/js/src/popover.js | shx sed \"s/^(import|export).*//\" | babel --filename node_modules/bootstrap/js/src/bootstrap.js | node node_modules/bootstrap/build/stamp.js > web/js/bootstrap.js",
+    "js-compile-plugins": "babel node_modules/bootstrap/js/src/ --out-dir node_modules/bootstrap/js/dist/ --source-maps",
+    "js-minify": "uglifyjs --config-file node_modules/bootstrap/build/uglifyjs.config.json --output web/js/bootstrap.min.js web/js/bootstrap.js",
     "js-minify-docs": "uglifyjs --config-file build/uglifyjs.config.json --output assets/js/docs.min.js assets/js/vendor/anchor.min.js assets/js/vendor/clipboard.min.js assets/js/vendor/holder.min.js assets/js/src/application.js",
     "js-test": "phantomjs ./node_modules/qunit-phantomjs-runner/runner.js js/tests/index.html 60",
     "js-test-cloud": "ruby -r webrick -e \"s = WEBrick::HTTPServer.new(:Port => 3000, :DocumentRoot => Dir.pwd, :Logger => WEBrick::Log.new('/dev/null'), :AccessLog => []); trap('INT') { s.shutdown }; s.start\" & grunt saucelabs-qunit",
@@ -60,11 +60,11 @@
   },
   "license": "MIT",
   "dependencies": {
+    "jquery": ">=3.0.0",
+    "popper.js": "^1.11.0",
     "bootstrap": "^4.0.0-beta"
   },
   "peerDependencies": {
-    "jquery": ">=3.0.0",
-    "popper.js": "^1.11.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
