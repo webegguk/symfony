@@ -2,5 +2,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h1>Your lucky number is {{ number }}</h1>
-{%  endblock %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                <h1>Bootstrap starter template</h1>
+                <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+            </div>
+            <div class="col-lg">
+                <h1>Your random number is {{ number }}</h1>
+            </div>
+            <div class="col-lg">
+                <p>third column</p>
+            </div>
+        </div>
+    </div><!-- /.container -->
+{% endblock %}
