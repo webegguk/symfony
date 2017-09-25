@@ -1212,6 +1212,10 @@ es6-promise@~4.0.3:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.0.5.tgz#7882f30adde5b240ccfa7f7d78c548330951ae42"
 
+escape-html@~1.0.1:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
+
 escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
@@ -1912,6 +1916,12 @@ hoek@2.x.x:
 hoek@4.x.x:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.0.tgz#72d9d0754f7fe25ca2d01ad8f8f9a9449a89526d"
+
+holderjs@^2.9.4:
+  version "2.9.4"
+  resolved "https://registry.yarnpkg.com/holderjs/-/holderjs-2.9.4.tgz#a165dbc2532ebff975491312259d0c520c059898"
+  dependencies:
+    shaven "^0.8.1"
 
 home-or-tmp@^2.0.0:
   version "2.0.0"
@@ -3682,6 +3692,12 @@ set-blocking@^2.0.0, set-blocking@~2.0.0:
 set-immediate-shim@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/set-immediate-shim/-/set-immediate-shim-1.0.1.tgz#4b2b1b27eb808a9f8dcc481a58e5e56f599f3f61"
+
+shaven@^0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/shaven/-/shaven-0.8.1.tgz#0f42d4fb32c4048349ff9ee9c296f5effb2dcaaf"
+  dependencies:
+    escape-html "~1.0.1"
 
 shebang-command@^1.2.0:
   version "1.2.0"
