@@ -3,15 +3,12 @@
 
 {% block body %}
 
-
     <div class="video-crop">
-
         <p>Video test</p>
         <video poster="../img/vid-placeholder.jpg" id="bgvid" playsinline autoplay muted loop>
             <source src="{{ asset('vid/hall-and-woodhouse-prem.webm') }}" type="video/webm">
             <source src="{{ asset('vid/hall-and-woodhouse-prem.mp4') }}" type="video/mp4">
         </video>
-
     </div>
     <div class="container">
         <div class="row">
@@ -20,12 +17,15 @@
                 <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
             </div>
             <div class="col-lg">
-                <h1>Your random number is {{ number }}</h1>
-                <div class="js-holder"></div>
+                <div class="card" style="width: 20rem;">
+                    {#<img class="card-img-top" data-src="holder.js/1200x500?auto=yes&amp;bg=007bff&amp;fg=fff&amp;text=Your random number is {{ number }}" alt="Your random number is {{ number }}"/>#}
+                    <div class="card-body">
+                        <div class="js-holder"></div>
+                    </div>
+                </div>
             </div>
             <div class="col-lg">
-                <p>third column</p>
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="true">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img class="d-block w-100" data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide" alt="First slide"/>
@@ -49,4 +49,5 @@
             </div>
         </div>
     </div><!-- /.container -->
+
 {% endblock %}
