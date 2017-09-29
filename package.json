@@ -27,9 +27,9 @@
     "js-lint": "eslint js/ && eslint --config node_modules/bootstrap/js/.eslintrc.json --env node build/ Gruntfile.js",
     "js-lint-docs": "eslint --config node_modules/bootstrap/js/.eslintrc.json assets/js/",
     "js-compile": "npm-run-all --parallel js-compile-*",
-    "js-compile-bundle": "shx cat node_modules/popper.js/dist/popper.js node_modules/bootstrap/js/src/util.js node_modules/bootstrap/js/src/alert.js node_modules/bootstrap/js/src/button.js node_modules/bootstrap/js/src/carousel.js node_modules/bootstrap/js/src/collapse.js node_modules/bootstrap/js/src/dropdown.js node_modules/bootstrap/js/src/modal.js node_modules/bootstrap/js/src/scrollspy.js node_modules/bootstrap/js/src/tab.js node_modules/bootstrap/js/src/tooltip.js node_modules/bootstrap/js/src/popover.js es6/hello.js es6/test.js | shx sed \"s/^(import|export).*//\" | babel --filename node_modules/bootstrap/js/src/bootstrap.js | node node_modules/bootstrap/build/stamp.js > web/js/app.js",
+    "js-compile-bundle": "shx cat node_modules/popper.js/dist/popper.js node_modules/bootstrap/js/src/util.js node_modules/bootstrap/js/src/alert.js node_modules/bootstrap/js/src/button.js node_modules/bootstrap/js/src/carousel.js node_modules/bootstrap/js/src/collapse.js node_modules/bootstrap/js/src/dropdown.js node_modules/bootstrap/js/src/modal.js node_modules/bootstrap/js/src/scrollspy.js node_modules/bootstrap/js/src/tab.js node_modules/bootstrap/js/src/tooltip.js node_modules/bootstrap/js/src/popover.js | shx sed \"s/^(import|export).*//\" | babel --filename node_modules/bootstrap/js/src/bootstrap.js | node node_modules/bootstrap/build/stamp.js > web/js/bs.js",
     "js-compile-plugins": "babel node_modules/bootstrap/js/src/ --out-dir node_modules/bootstrap/js/dist/ --source-maps",
-    "js-minify": "uglifyjs --config-file node_modules/bootstrap/build/uglifyjs.config.json --output web/js/app.min.js web/js/app.js",
+    "js-minify": "uglifyjs --config-file node_modules/bootstrap/build/uglifyjs.config.json --output web/js/bs.min.js web/js/bs.js",
     "js-minify-docs": "uglifyjs --config-file node_modules/bootstrap/build/uglifyjs.config.json --output assets/js/docs.min.js assets/js/vendor/anchor.min.js assets/js/vendor/clipboard.min.js assets/js/vendor/holder.min.js assets/js/src/application.js",
     "js-test": "phantomjs ./node_modules/qunit-phantomjs-runner/runner.js js/tests/index.html 60",
     "js-test-cloud": "ruby -r webrick -e \"s = WEBrick::HTTPServer.new(:Port => 3000, :DocumentRoot => Dir.pwd, :Logger => WEBrick::Log.new('/dev/null'), :AccessLog => []); trap('INT') { s.shutdown }; s.start\" & grunt saucelabs-qunit",
@@ -54,9 +54,9 @@
     "dev": "webpack-dev-server",
     "devall": "npm-run-all start dev"
   },
-  "style": "dist/css/bootstrap.css",
-  "sass": "scss/bootstrap.scss",
-  "main": "dist/js/bootstrap",
+  "style": "web/css/styles.css",
+  "sass": "assets/scss/global.scss",
+  "main": "assets/js/main",
   "repository": {
     "type": "git",
     "url": ""

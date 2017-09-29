@@ -5,7 +5,7 @@
 
     <div class="video-crop">
         <p>Video test</p>
-        <video poster="../img/vid-placeholder.jpg" id="bgvid" playsinline autoplay muted loop>
+        <video poster="{{ asset('img/vid-placeholder.jpg') }}" id="bgvid" autoplay muted loop playsinline>
             <source src="{{ asset('vid/hall-and-woodhouse-prem.webm') }}" type="video/webm">
             <source src="{{ asset('vid/hall-and-woodhouse-prem.mp4') }}" type="video/mp4">
         </video>
@@ -15,10 +15,11 @@
             <div class="col-lg">
                 <h1>Bootstrap starter template</h1>
                 <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+                <p>Workflow for this theme includes npm installs of Bootstrap 4 and its dependencies. </p>
             </div>
             <div class="col-lg">
-                <div class="card" style="width: 20rem;">
-                    {#<img class="card-img-top" data-src="holder.js/1200x500?auto=yes&amp;bg=007bff&amp;fg=fff&amp;text=Your random number is {{ number }}" alt="Your random number is {{ number }}"/>#}
+                <div class="card">
+                    <img class="card-img-top" data-src="holder.js/1200x500?auto=yes&amp;bg=007bff&amp;fg=fff&amp;text=Your random number is {{ number }}" alt="Your random number is {{ number }}"/>
                     <div class="card-body">
                         <div class="js-holder"></div>
                     </div>

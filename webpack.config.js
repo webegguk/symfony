@@ -6,21 +6,21 @@ const srcPath = path.join(__dirname, 'assets');
 const dstPath = path.join(__dirname, 'web');
 
 const sassLoaders = [
-    'css-loader?minimize',
-    'sass-loader'
+    'css-loader?sourceMap',
+    'sass-loader?sourceMap'
 ];
 
 module.exports = {
     entry: {
-        client: './assets/js/main.js'
+        client: ['./assets/js/main.js']
     },
     module: {
         loaders: [
             {
-             test: /\.js$/,
-             exclude: /node_modules/,
-             loader: 'babel-loader'
-         },
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader'
+            },
             {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract(sassLoaders)
@@ -33,20 +33,20 @@ module.exports = {
     },
     devtool: 'source-map',
     output: {
-         path: path.resolve(__dirname, 'web'),
-         filename: './js/client.js',
+        path: path.resolve(__dirname, 'web'),
+        filename: './js/client.js'
     },
     devServer: {
-        hot: true,
-        //contentBase: path(__dirname, 'dist'),
-        publicPath: '/',
-        proxy: {
-            '/': {
-                target: 'http://localhost:8000',
-                secure: false,
-                changeOrigin: true,
-            }
+        port: 5000,
+        host: '10.0.0.182',
+        historyApiFallback: true,
+        watchOptions: {
+            aggregateTimeout: 300,
+            poll: 1000
         },
+        proxy: {
+            '/': 'http://localhost:8000'
+        }
     },
     plugins: [
         new ExtractTextPlugin({

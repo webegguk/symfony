@@ -1,1 +1,1 @@
-console.log('Hello, Webpack rainbows!')
+console.log('Hello, Webpack rainbow!')
