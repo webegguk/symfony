@@ -33,11 +33,14 @@
 @import "../../node_modules/bootstrap/scss/carousel";
 @import "../../node_modules/bootstrap/scss/utilities";
 @import "components/video";
+@import "components/topbar";
+@import "components/fullbar";
+@import "components/navbar";
+@import "components/promo";
 
-$bg-color: #fff;
+$bg-color: $gray-200;
 $fg-color: #000;
 $theme-name: base;
-
 
 :export {
   themeName: $theme-name;

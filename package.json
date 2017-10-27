@@ -49,10 +49,10 @@
     "watch": "npm-run-all --parallel watch-css watch-js",
     "cp-jquery": "shx cp node_modules/jquery/dist/jquery.js web/js/jquery.js",
     "cp-holder": "shx cp -R node_modules/holderjs/holder.js web/js/holder.js",
-    "build": "webpack",
-    "start": "webpack --watch",
-    "dev": "webpack-dev-server",
-    "devall": "npm-run-all start dev"
+    "build": "rimraf web/js/wp && NODE_ENV=production webpack",
+    "start": "rimraf web/js/wp && NODE_ENV=production webpack --watch",
+    "dev": "NODE_ENV=development webpack-dev-server",
+    "devall": "npm-run-all NODE_ENV=development start dev"
   },
   "style": "web/css/styles.css",
   "sass": "assets/scss/global.scss",
@@ -73,7 +73,7 @@
     "webpack-dev-server": "^2.9.0"
   },
   "devDependencies": {
-    "@symfony/webpack-encore": "^0.15.1",
+    "@symfony/webpack-encore": "^0.16.0",
     "autoprefixer": "^7.1.2",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
@@ -82,10 +82,12 @@
     "clean-css-cli": "^4.1.6",
     "css-loader": "^0.28.7",
     "eslint": "^4.2.0",
+    "exports-loader": "^0.6.4",
     "extract-text-webpack-plugin": "^3.0.0",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-saucelabs": "^9.0.0",
+    "html-webpack-plugin": "^2.30.1",
     "htmllint-cli": "^0.0.6",
     "node-sass": "^4.5.3",
     "nodemon": "^1.11.0",
@@ -94,12 +96,13 @@
     "postcss-cli": "^4.1.0",
     "qunit-phantomjs-runner": "^2.3.0",
     "qunitjs": "^2.4.0",
+    "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
     "shelljs": "^0.7.8",
     "shx": "^0.2.2",
     "style-loader": "^0.18.2",
     "uglify-js": "^3.0.24",
-    "webpack": "^3.6.0"
+    "webpack": "^3.8.1"
   },
   "engines": {
     "node": ">=4"

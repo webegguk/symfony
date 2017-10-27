@@ -29,6 +29,8 @@ framework:
         handler_id: ~
     fragments: ~
     http_method_override: true
+#    assets:
+#        json_manifest_path: '%kernel.rootsymfony/symfony_dir%/public/build/manifest.json'
 
 # Twig Configuration
 twig:

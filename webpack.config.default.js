@@ -13,46 +13,43 @@ const dstPath = path.join(__dirname, 'web');
 var entry = PRODUCTION
     ? ['./assets/js/main.js']
     : ['./assets/js/main.js',
-        'webpack/hot/dev-server',
-        'webpack-dev-server/client?http://localhost:8080'];
+        'webpack/hot/dev-server'];
 
 var plugins = PRODUCTION
     ? [
         new webpack.optimize.UglifyJsPlugin(),
-        new ExtractTextPlugin('./css/styles-[contenthash:10].css')
+        new ExtractTextPlugin('./css/styles-[contenthash:10].css'),
+        new HTMLWebpackPlugin({
+            title: 'Custom template',
+            template: 'base.tp.html',
+            path: path.resolve(__dirname, '/'),
+            publicPath: path.resolve(__dirname, '/'),
+            filename: path.join(__dirname, '/app/Resources/views/base.html.twig')
+        })
     ]
     : [
-        new ExtractTextPlugin('./css/styles.css')
+        new ExtractTextPlugin('./css/styles.css'),
+        new HTMLWebpackPlugin({
+            title: 'Custom template',
+            template: 'base.tp.html',
+            path: path.resolve(__dirname, '/'),
+            publicPath: path.resolve(__dirname, '/'),
+            filename: path.join(__dirname, '/app/Resources/views/base.html.twig')
+        })
     ];
 
 plugins.push(
     new webpack.DefinePlugin({
         DEVELOPMENT: JSON.stringify(DEVELOPMENT),
         PRODUCTION: JSON.stringify(PRODUCTION)
-    }),
-    new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery',
-        'window.jQuery': 'jquery',
-        Popper: ['popper.js', 'default'],
-        // In case you imported plugins individually, you must also require them here:
-        Util: "exports-loader?Util!bootstrap/js/dist/util",
-        Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown"
-    }),
-    new HTMLWebpackPlugin({
-        title: 'Custom template',
-        template: 'base.tp.html',
-        path: path.resolve(__dirname, '/'),
-        publicPath: path.resolve(__dirname, '/'),
-        filename: path.join(__dirname, '/app/Resources/views/base.html.twig')
     })
 );
 
 const cssIdentifier = PRODUCTION ? '[hash:base64:10]' : '[path][name]---[local]';
 
 const cssLoader = PRODUCTION
-    ? ExtractTextPlugin.extract(['css-loader?sourceMap&localIdentName=' + cssIdentifier, 'sass-loader?sourceMap'])
-    : ['style-loader', 'css-loader?sourceMap&localIdentName=' + cssIdentifier, 'sass-loader?sourceMap'];
+    ? ExtractTextPlugin.extract(['css-loader?sourceMap&localIdentName=' + cssIdentifier, 'sass-loader'])
+    : ['style-loader', 'css-loader?sourceMap&localIdentName=' + cssIdentifier, 'sass-loader'];
 
 module.exports = {
     entry: entry,
@@ -80,11 +77,15 @@ module.exports = {
         filename: PRODUCTION ? 'js/wp/client.[hash:12].min.js' : './js/wp/client.js'
     },
     devServer: {
-        port: 8080,
+        port: 8000,
         host: '127.0.0.1',
         historyApiFallback: true,
         proxy: {
-            "/": "http://0.0.0.0:8000"
+            "/": {
+                "target": {
+                    "host": "http://127.0.0.1"
+                }
+            }
         }
     },
     plugins: plugins
