@@ -15,3 +15,9 @@ import styles from '../scss/global.scss';
 
 const  themeName = styles.themeName;
 console.log(themeName)
+
+if (DEVELOPMENT) {
+    if (module.hot) {
+        module.hot.accept();
+    }
+}

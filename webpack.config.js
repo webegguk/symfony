@@ -12,9 +12,7 @@ const dstPath = path.join(__dirname, 'web');
 
 var entry = PRODUCTION
     ? ['./assets/js/main.js']
-    : ['./assets/js/main.js',
-        'webpack/hot/dev-server',
-        'webpack-dev-server/client?http://localhost:8080'];
+    : ['./assets/js/main.js'];
 
 var plugins = PRODUCTION
     ? [
@@ -45,7 +43,8 @@ plugins.push(
         path: path.resolve(__dirname, '/'),
         publicPath: path.resolve(__dirname, '/'),
         filename: path.join(__dirname, '/app/Resources/views/base.html.twig')
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
 );
 
 const cssIdentifier = PRODUCTION ? '[hash:base64:10]' : '[path][name]---[local]';
@@ -80,6 +79,7 @@ module.exports = {
         filename: PRODUCTION ? 'js/wp/client.[hash:12].min.js' : './js/wp/client.js'
     },
     devServer: {
+        hot:true,
         port: 8080,
         host: '127.0.0.1',
         historyApiFallback: true,
